@@ -12,25 +12,28 @@ private:
 public:
     void push(const T& value) {
         // TODO
-
+        data.push_back(value);
     }
 
     void pop() {
         // TODO
-        if ()
+        if (data.empty()) {
+            throw std::underflow_error("ArrayStack is empty");
+        }
+        data.pop_back();
     }
 
     T top() const {
         // TODO
-        return T();
+       if (data.empty()) {
+           throw std::underflow_error("ArrayStack is empty");
+       }
+        return data.back();
     }
 
     bool empty() const {
         // TODO
-        if (data.empty()) {
-            return true;
-        }
-        return false;
+        return data.empty();
     }
 
     int size() const {
