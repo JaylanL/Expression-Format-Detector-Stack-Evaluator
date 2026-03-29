@@ -12,10 +12,12 @@ private:
 public:
     void push(const T& value) {
         // TODO
+
     }
 
     void pop() {
         // TODO
+        if ()
     }
 
     T top() const {
@@ -25,12 +27,15 @@ public:
 
     bool empty() const {
         // TODO
-        return true;
+        if (data.empty()) {
+            return true;
+        }
+        return false;
     }
 
     int size() const {
         // TODO
-        return 0;
+       return data.size();
     }
 };
 
