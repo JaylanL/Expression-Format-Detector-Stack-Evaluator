@@ -90,51 +90,59 @@ vector<Token> infixToPostfix(const vector<Token>& tokens) {
 double evalPostfix(const vector<Token>& tokens) {
     ArrayStack<double> stack;
     // TODO
-    return 0.0;
+    double a = 0.0;
+    double b = 0.0;
+
+    for (int i = 0; i < tokens.size(); i++) {
+        if (isOperator(tokens[i].value)) {
+             a = stack.top();
+            stack.pop();
+             b = stack.top();
+            stack.pop();
+            if (tokens[i].value == "+") {
+                stack.push(a + b);
+            } else if (tokens[i].value == "-") {
+                stack.push(a - b);
+            } else if (tokens[i].value == "*") {
+                stack.push(a * b);
+            } else if (tokens[i].value == "/") {
+                stack.push(a / b);
+            }
+        } else {
+            stack.push(stod(tokens[i].value));
+        }
+    }
+    return stack.top();
 }
 
 // Main
 
 int main() {
-    vector<string> lines = {
-        "3 4 +", "3 4 2 * +",
-        "3 4 + 2 *", "3 + 4", "3 + 4 * 2", "(3+4) * 2"
-    };
 
-    for (int i = 0; i < lines.size(); i++) {
-        if (isValidPostfix(tokenize(lines[i]))) {
-            cout << "POSTFIX" << lines[i] << endl;
+
+    string line;
+    getline(cin, line);
+
+    vector<Token> tokens = tokenize(line);
+
+    if (isValidPostfix(tokens)) {
+        cout << "FORMAT: POSTFIX\n";
+        cout << "RESULT: " << evalPostfix(tokens) << "\n";
+    }
+    else if (isValidInfix(tokens)) {
+        vector<Token> postfix = infixToPostfix(tokens);
+        cout << "FORMAT: INFIX\n";
+        cout << "POSTFIX: ";
+        for (const auto& t : postfix) {
+            cout << t.value << " ";
         }
-        else {
-            cout << "INFIX" << lines[i] << endl;
-        }
+        cout << "\n";
+        cout << "RESULT: " << evalPostfix(postfix) << "\n";
+    }
+    else {
+        cout << "FORMAT: NEITHER\n";
+        cout << "ERROR: invalid expression\n";
     }
 
     return 0;
-    //
-    // string line;
-    // getline(cin, line);
-    //
-    // vector<Token> tokens = tokenize(line);
-    //
-    // if (isValidPostfix(tokens)) {
-    //     cout << "FORMAT: POSTFIX\n";
-    //     cout << "RESULT: " << evalPostfix(tokens) << "\n";
-    // }
-    // else if (isValidInfix(tokens)) {
-    //     vector<Token> postfix = infixToPostfix(tokens);
-    //     cout << "FORMAT: INFIX\n";
-    //     cout << "POSTFIX: ";
-    //     for (const auto& t : postfix) {
-    //         cout << t.value << " ";
-    //     }
-    //     cout << "\n";
-    //     cout << "RESULT: " << evalPostfix(postfix) << "\n";
-    // }
-    // else {
-    //     cout << "FORMAT: NEITHER\n";
-    //     cout << "ERROR: invalid expression\n";
-    // }
-    //
-    // return 0;
 }
