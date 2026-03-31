@@ -29,14 +29,14 @@ no known conversion from 'string' to 'const Token'*
 **Commit(s):*Fixed tokenizer*
 ---
 ### Entry 2
-**Date:** YYYY-MM-DD
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision
-**Task worked on:**
-**Issue or decision:**
-**Error message / symptom (if applicable):**
-**What I tried:**
-**Fix / resolution (or final decision):**
-**Commit(s):**
+**Date:** 2026-03-30
+**Entry Type:Bug Fix ** 
+**Task worked on: Implementing and testing isValidPostfix() in mian**
+**Issue or decision: incorrect outputs of ValidPostfix. I assumed that only checking if a token vector was empty, if they included parenthesis, and if the first value int eh line was an opperand would be enough to classify a postfix.**
+**Error message / symptom (if applicable): Incorrect outputs with INFIX being checked as POSTFIX**
+**What I tried:I tried testing Parenthesis Postfix, infix, and regular postfix.**
+**Fix / resolution (or final decision): I needed to define the correct factors for what actually classifies the postfix. To determine the postfix, the ending value should just be one value and every time an operator does appear, before it should be 2 operands. More conditions are checked and overall the correct factors are checked for this postfix checker to work.**
+**Commit(s):Fixed postfix checker**
 ---
 ### Entry 3
 **Date:** YYYY-MM-DD
