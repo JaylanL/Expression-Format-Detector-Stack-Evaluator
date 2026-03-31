@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <cctype>
+#include <sstream>
 
 #include "ArrayStack.h"
 
@@ -19,6 +20,14 @@ struct Token {
 vector<Token> tokenize(const string& line) {
     vector<Token> tokens;
     // TODO
+    stringstream ss(line); //Inserts input into stringstream and converts numbers into characters inside the stream
+    string buffer;
+
+    while (ss >> buffer) {
+        Token t;
+        t.value = buffer;
+        tokens.push_back(t);
+    }
     return tokens;
 }
 
@@ -64,29 +73,38 @@ double evalPostfix(const vector<Token>& tokens) {
 // Main
 
 int main() {
-    string line;
-    getline(cin, line);
-
+    string line = "1 * 2 * 3";
     vector<Token> tokens = tokenize(line);
 
-    if (isValidPostfix(tokens)) {
-        cout << "FORMAT: POSTFIX\n";
-        cout << "RESULT: " << evalPostfix(tokens) << "\n";
-    }
-    else if (isValidInfix(tokens)) {
-        vector<Token> postfix = infixToPostfix(tokens);
-        cout << "FORMAT: INFIX\n";
-        cout << "POSTFIX: ";
-        for (const auto& t : postfix) {
-            cout << t.value << " ";
-        }
-        cout << "\n";
-        cout << "RESULT: " << evalPostfix(postfix) << "\n";
-    }
-    else {
-        cout << "FORMAT: NEITHER\n";
-        cout << "ERROR: invalid expression\n";
+    for (const auto& token : tokens) {
+        cout << token.value << endl;
     }
 
     return 0;
+    //
+    // string line;
+    // getline(cin, line);
+    //
+    // vector<Token> tokens = tokenize(line);
+    //
+    // if (isValidPostfix(tokens)) {
+    //     cout << "FORMAT: POSTFIX\n";
+    //     cout << "RESULT: " << evalPostfix(tokens) << "\n";
+    // }
+    // else if (isValidInfix(tokens)) {
+    //     vector<Token> postfix = infixToPostfix(tokens);
+    //     cout << "FORMAT: INFIX\n";
+    //     cout << "POSTFIX: ";
+    //     for (const auto& t : postfix) {
+    //         cout << t.value << " ";
+    //     }
+    //     cout << "\n";
+    //     cout << "RESULT: " << evalPostfix(postfix) << "\n";
+    // }
+    // else {
+    //     cout << "FORMAT: NEITHER\n";
+    //     cout << "ERROR: invalid expression\n";
+    // }
+    //
+    // return 0;
 }
