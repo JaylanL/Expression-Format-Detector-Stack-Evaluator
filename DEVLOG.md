@@ -39,41 +39,46 @@ no known conversion from 'string' to 'const Token'*
 **Commit(s):Fixed postfix checker**
 ---
 ### Entry 3
-**Date:** YYYY-MM-DD
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision
-**Task worked on:**
-**Issue or decision:**
-**Error message / symptom (if applicable):**
-**What I tried:**
-**Fix / resolution (or final decision):**
-**Commit(s):**
+**Date:** 2026-03-31
+**Entry Type:** Bug Fix 
+**Task worked on: Implementing isValidInfix()**
+**Issue or decision: All cases of infix incorrectly return false.**
+**Error message / symptom (if applicable): No real error message, just infix outputs were outputting false on my test cases.**
+**What I tried: I tried using an else box that was a generalization that the current number being checked is an operand.**
+**Fix / resolution (or final decision): I changed it so that it was an else if box that checked if the current value being checked was an operand and that it wasn't a parenthesis. 
+The main fix was that I realized that the parenthesis were not considered operands and I needed to make the else condition less broad.**
+**Commit(s):Fixed isValidInfix function**
 ---
 ### Entry 4
-**Date:** YYYY-MM-DD
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision
-**Task worked on:**
-**Issue or decision:**
-**Error message / symptom (if applicable):**
-**What I tried:**
-**Fix / resolution (or final decision):**
-**Commit(s):**
+**Date:** 2026-03-31
+**Entry Type: Edge Case** 
+**Task worked on: Implementing isValidInfix()**
+**Issue or decision: The outputs for my test cases were determing that "3 + 4)" was a valid infix**
+**Error message / symptom (if applicable): No real error message, just outputting incorrect ouptuts.**
+**What I tried: I tried using a parenthesis count to deterine the number of front and end parenthesis were in the line.**
+**Fix / resolution (or final decision): The main issue was that when I was counting for the number of equal parenthesis, I used size-1 as the limit for itteration and never actually 
+checked the last value of being a parentheses. The change I made was that I added a check after the loop to count that the last token in the parenthesis count. As well,
+I added a check for if the parenthesis were balanced at the end.**
+**Commit(s):Fixed isValidInfix function**
 ---
 ### Entry 5
-**Date:** YYYY-MM-DD
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision
-**Task worked on:**
-**Issue or decision:**
-**Error message / symptom (if applicable):**
-**What I tried:**
-**Fix / resolution (or final decision):**
-**Commit(s):**
+**Date:** 2026-03-31
+**Entry Type: Bug Fix** 
+**Task worked on: Implementing infixToPostfix()**
+**Issue or decision: Operators were stacked without checking precedence without following multiplication/division priority in actual math before addtion/subtraction.**
+**Error message / symptom (if applicable): No real error message, just wrong display of Postfix ordering**
+**What I tried: I tried using a stack that would store all the operands for the tokens being read and then dumping it all back into output with the operands.**
+**Fix / resolution (or final decision): I added an extra check for checking operands wiht a while loop that will check for higher precedence among th evalue being looked at and in the stack that will pop
+the greater precedence value into output first**
+**Commit(s): Fixed isValidInfix function**
 ---
 ### Entry 6
-**Date:** YYYY-MM-DD
-**Entry Type:** Bug Fix / Edge Case / Engineering Decision
-**Task worked on:**
-**Issue or decision:**
-**Error message / symptom (if applicable):**
-**What I tried:**
-**Fix / resolution (or final decision):**
-**Co
+**Date:** 2026-03-31
+**Entry Type:** Engineering Decision
+**Task worked on: Implementing infixToPostfix() operator stack design**
+**Issue or decision: I needed a way to handle how I would be able to add numbers, operators, and how to deal with parenthesis.**
+**Error message / symptom (if applicable): No real error message, just wanted a design for this system.**
+**What I tried: I tried to just store each of the operands and operators into their own vectors.**
+**Fix / resolution (or final decision): I found it easier to just use the ArrayStack because it felt easier to order precedence within operands and as well how to handle how 
+the open and closed parenthesis and the conetens inside for the output.**
+**Commit(s): Fixed isValidInfix function**
